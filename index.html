@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定時炸彈拆除遊戲</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- CSS繪製的炸彈背景 -->
+        <div class="bomb-body">
+            <div class="strap strap-1"></div>
+            <div class="strap strap-2"></div>
+            <div class="dynamite-stick"></div>
+            <div class="dynamite-stick"></div>
+            <div class="dynamite-stick"></div>
+            <div class="circuit-board">
+                <div class="timer-screen"></div>
+                <!-- 電線連接點 -->
+                <div class="terminals-left">
+                    <div class="terminal"></div><div class="terminal"></div><div class="terminal"></div>
+                </div>
+                <div class="terminals-right">
+                    <div class="terminal"></div><div class="terminal"></div><div class="terminal"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 互動元素 -->
+        <div id="timer-display">10:00</div>
+        <div class="wire-container">
+            <div class="wire" id="wire-1"></div>
+            <div class="wire" id="wire-2"></div>
+            <div class="wire" id="wire-3"></div>
+            <div class="wire" id="wire-4"></div>
+            <div class="wire" anid="wire-5"></div>
+            <div class="wire" id="wire-6"></div>
+        </div>
+    </div>
+
+    <!-- 遊戲結束/勝利畫面 -->
+    <div id="game-over-overlay" class="overlay">
+        <div id="game-over-message">BOOM!</div>
+        <button class="reset-button">再試一次</button>
+    </div>
+
+    <div id="game-win-overlay" class="overlay">
+        <div id="game-win-message">拆除成功!</div>
+        <button class="reset-button">重新開始</button>
+    </div>
+
+    <!-- 音效檔案 -->
+    <audio id="sound-explosion" src="audio/explosion.mp3" preload="auto"></audio>
+    <audio id="sound-defuse" src="audio/defuse.mp3" preload="auto"></audio>
+    <audio id="sound-cut" src="audio/cut.mp3" preload="auto"></audio>
+    <audio id="sound-tick" src="audio/tick.mp3" preload="auto" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

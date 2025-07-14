@@ -1,0 +1,203 @@
+/* --- 基本設定 --- */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #333;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 800px;
+    height: 450px;
+}
+
+/* --- CSS繪製的炸彈 --- */
+.bomb-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.dynamite-stick {
+    width: 120px;
+    height: 400px;
+    background: linear-gradient(to right, #c00, #a00);
+    border: 2px solid #500;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.strap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #1a1a1a;
+    z-index: 10;
+}
+.strap-1 { top: 80px; }
+.strap-2 { bottom: 80px; }
+
+.circuit-board {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background-color: #2a572a;
+    border: 3px solid #1a381a;
+    border-radius: 10px;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
+.timer-screen {
+    width: 220px;
+    height: 80px;
+    background-color: #000;
+    border: 2px solid #111;
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px #000;
+}
+
+.terminals-left, .terminals-right {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+.terminals-left { left: 10px; }
+.terminals-right { right: 10px; }
+
+.terminal {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, #ccc, #888);
+    border-radius: 50%;
+    border: 2px solid #555;
+}
+
+/* --- 互動元素樣式 --- */
+#timer-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #ff1a1a;
+    text-shadow: 0 0 15px #ff1a1a, 0 0 20px #ff1a1a;
+    z-index: 30;
+    letter-spacing: 5px;
+}
+
+.wire-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 40;
+}
+
+.wire {
+    position: absolute;
+    height: 8px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.wire:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* 剪斷動畫 */
+.wire.cut {
+    background: transparent !important;
+    box-shadow: none;
+}
+.wire.cut::before, .wire.cut::after {
+    content: '';
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: 4px;
+}
+.wire.cut::before { left: -5%; transform: rotate(-10deg) translateX(-5px); }
+.wire.cut::after { right: -5%; transform: rotate(10deg) translateX(5px); }
+
+/* --- 電線位置和顏色 --- */
+/* 手動調整這些值來對齊連接點 */
+#wire-1 { top: 105px; left: 260px; width: 280px; }
+#wire-2 { top: 165px; left: 260px; width: 280px; transform: rotate(-3deg); }
+#wire-3 { top: 225px; left: 260px; width: 280px; }
+#wire-4 { top: 285px; left: 260px; width: 280px; transform: rotate(3deg); }
+#wire-5 { top: 135px; left: 260px; width: 280px; transform: rotate(5deg); }
+#wire-6 { top: 255px; left: 260px; width: 280px; transform: rotate(-5deg); }
+
+.color-red    { background-color: #ff0000; }
+.color-blue   { background-color: #0077ff; }
+.color-yellow { background-color: #ffff00; }
+.color-green  { background-color: #00ff00; }
+.color-purple { background-color: #9d00ff; }
+.color-black  { background-color: #333; }
+
+/* --- 遊戲結束/勝利畫面 --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* 預設隱藏 */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    z-index: 100;
+}
+#game-over-overlay { background-color: rgba(255, 0, 0, 0.6); }
+#game-win-overlay { background-color: rgba(0, 200, 0, 0.6); }
+
+#game-over-message, #game-win-message {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.reset-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+.reset-button:hover { background-color: white; color: black; }
+
+/* 螢幕震動 */
+@keyframes shake {
+    0%, 100% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-5px, 5px); }
+    20%, 40%, 60%, 80% { transform: translate(5px, -5px); }
+}
+.shake { animation: shake 0.5s 1; }
