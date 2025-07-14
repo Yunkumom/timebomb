@@ -116,12 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // /***** 如何更改觸發線 *****/
         // --------------------------------------------------------------------
         // 方法一：隨機選擇一條線作為觸發線 (目前使用的方法)
-        defuseWireColor = WIRE_COLORS[Math.floor(Math.random() * WIRE_COLORS.length)];
+        //defuseWireColor = WIRE_COLORS[Math.floor(Math.random() * WIRE_COLORS.length)];
         
         // 方法二：手動指定觸發線顏色。
         // 若要手動指定，請註解掉上面那行，並取消註解下面這行。
         // 將 'blue' 改成您想要的顏色 (必須是 WIRE_COLORS 陣列中的一種)。
-        // defuseWireColor = 'blue'; 
+        defuseWireColor = 'blue'; 
         // --------------------------------------------------------------------
         
         console.log(`提示：本局的正確拆除線是【${defuseWireColor}】`);

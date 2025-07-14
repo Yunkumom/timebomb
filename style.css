@@ -144,12 +144,13 @@ body {
 
 /* --- 電線位置和顏色 --- */
 /* 手動調整這些值來對齊連接點 */
-#wire-1 { top: 105px; left: 260px; width: 280px; }
-#wire-2 { top: 165px; left: 260px; width: 280px; transform: rotate(-3deg); }
-#wire-3 { top: 225px; left: 260px; width: 280px; }
-#wire-4 { top: 285px; left: 260px; width: 280px; transform: rotate(3deg); }
-#wire-5 { top: 135px; left: 260px; width: 280px; transform: rotate(5deg); }
-#wire-6 { top: 255px; left: 260px; width: 280px; transform: rotate(-5deg); }
+/* --- 電線位置和顏色 (優化佈局) --- */
+#wire-1 { top: 95px;  left: 260px; width: 280px; transform: rotate(-2deg); }
+#wire-2 { top: 135px; left: 260px; width: 280px; transform: rotate(3deg); }
+#wire-3 { top: 175px; left: 260px; width: 280px; transform: rotate(-1deg); }
+#wire-4 { top: 215px; left: 260px; width: 280px; transform: rotate(2deg); }
+#wire-5 { top: 255px; left: 260px; width: 280px; transform: rotate(-4deg); }
+#wire-6 { top: 295px; left: 260px; width: 280px; transform: rotate(1deg); }
 
 .color-red    { background-color: #ff0000; }
 .color-blue   { background-color: #0077ff; }
